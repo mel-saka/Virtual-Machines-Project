@@ -19,9 +19,10 @@ config.vm.define "web1" do |web|
   web.vm.provision "shell", inline: <<-SHELL
   apt-get update
   apt-get install -y apache2 php libapache2-mod-php php-mysql
-  rm /var/www/html/index.html
-  mv /vagrant/index.php /var/www/html/index.php
-  mv /vagrant/web-db.php /var/www/html/web-db.php
+  mv  /vagrant/000-default.conf  /etc/apache2/sites-available/000-default.conf 
+  mv  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
+  mv  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
+  systemctl restart apache2
   SHELL
 end
 config.vm.define "web2" do |web|
