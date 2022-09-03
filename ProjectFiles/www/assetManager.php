@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="table.css"> 
+    <div class = "menu">
+
+    <a href="renewal.php">
+        Assest Renewal
+    </a>
+    <a href="stock.php">
+        New Assets Stock 
+    </a>
+    <a href="user.php">
+        Asset Store Manager 
+    </a>
+</div>
+  </head>
   <body>
+  <a href="new.php">Add Device</a>
     <table>
       <caption>Assets</caption> 
       <tr>
-       <th>username</th>  
-       <th>Device ID</th>
+       <th>StaffID</th> 
+       <th>User</th>  
+       <th>Asset Tag</th>
         <th>Model</th>
         <th>Purchase date</th>
-        <th>Delete></td>
+        <th>Status</th>
+        <th>Edit</td>
+        <th>Delete</td>
         
 </tr>
 <?php
@@ -21,10 +40,12 @@ include('web-db.php');
     $changeDate = date("d-m-Y", strtotime($currDate));
     ?>
   <tr>
+   <td><?php echo $row['StaffID']; ?></td>
     <td><?php echo $row['username']; ?></td>
-    <td><?php echo $row['DeviceID']; ?></td>
+    <td><?php echo $row['AssetTag']; ?></td>
     <td><?php echo $row['Model']; ?></td>
-    <td><?php echo $changeDate; ?></td>    
+    <td><?php echo $changeDate; ?></td>
+    <td><?php echo $row['Stat']; ?></td>    
     <td><a href="up.php?id=<?php echo $row['DeviceID']; ?>">Edit</a></td>
     <td><a href="del.php?id=<?php echo $row['DeviceID']; ?>">Delete</a></td>
   </tr>	

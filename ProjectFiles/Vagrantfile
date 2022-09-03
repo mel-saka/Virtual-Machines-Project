@@ -19,21 +19,29 @@ config.vm.define "web1" do |web|
   web.vm.provision "shell", inline: <<-SHELL
   apt-get update
   apt-get install -y apache2 php libapache2-mod-php php-mysql
-  mv  /vagrant/000-default.conf  /etc/apache2/sites-available/000-default.conf 
-  mv  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
-  mv  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
-  systemctl restart apache2
+  cp  /vagrant/000-default.conf  /etc/apache2/sites-available/000-default.conf 
+  cp  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
+  cp  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
+  # mv  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
+  # mv  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
+   systemctl restart apache2
   SHELL
 end
 config.vm.define "web2" do |web|
     web.vm.box = "ubuntu/focal64"
     web.vm.hostname = "webserver2.test"
+    web.vm.network "forwarded_port", guest: 80, host: 8180, host_ip: "127.0.0.1"
     web.vm.network :private_network, ip: "192.168.56.23"
-  #  web.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-  #  web.vm.synced_folder ".", "/vagrant"
+    web.vm.synced_folder ".", "/vagrant"
     web.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y apache2
+    apt-get install -y apache2 php libapache2-mod-php php-mysql
+  cp  /vagrant/config/000-default.conf  /etc/apache2/sites-available/000-default.conf 
+  cp  /vagrant/config/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
+  cp  /vagrant/config/apache2.conf      /etc/apache2/apache2.conf 
+  # mv  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
+  # mv  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
+   systemctl restart apache2
       SHELL
 end
 
