@@ -3,15 +3,18 @@
   <head>
     <link rel="stylesheet" type="text/css" href="table.css"> 
     <div class = "menu">
+    <a href="assetManager.php">
+        Assest Database
+    </a>
     <a href="renewal.php">
         Assest Renewal
     </a>
     <a href="stock.php">
         New Assets Stock 
     </a>
-    <a href="#">
-        Asset Store Manager 
-    </a>
+    <a href="dash.php">
+        Requests Dashboard
+     </a>
 </div>
   </head>
   <body>
@@ -31,7 +34,7 @@
 include('web-db.php');
 ?>
 <?php
-  $q = $pdo->query("SELECT * FROM Staff");
+  $q = $pdo->query("SELECT * FROM Staff WHERE NOT StaffID = '1'");
   while($row = $q->fetch()){
     ?>
   <tr>

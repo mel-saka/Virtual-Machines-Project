@@ -20,7 +20,7 @@ if($nRows == 1){
 }
 ?>
 <form action = "Swap.php" method="post">
-
+<link rel="stylesheet" type="text/css" href="form.css"> 
   <input type="hidden" id="DeviceID" name="DeviceID" value = "<?php echo $D_ID; ?>"><br>
   <label for="AssetTag">Asset Tag</label><br>
   <input type="Text" id="AssetTag" name="AssetTag" value = "<?php echo $tag; ?>"readonly><br>   
@@ -41,7 +41,8 @@ if($nRows == 1){
     <option value="<?php echo  $row['AssetTag']; ?>"><?php echo  $row['AssetTag']; ?> </option> 
 <?php  
  }
- ?>  
+ ?>
+ <option value="None">None</option> 
      </select >
      <button type="submit" name="sbt">Save</button>
     </form>

@@ -10,7 +10,6 @@ $pdo = require_once 'web-db.php';
 $error = "0";
 
 if(isset($_POST['sbt'])){
-   
     $repTAG = $_POST['Replace'];
     $lDID = $_POST['DeviceID'];
     $tg = $_POST['AssetTag'];
@@ -28,7 +27,7 @@ if(isset($_POST['sbt'])){
         }
         $stat = $_POST['Status'];
         $p_date = $_POST['purchase'];
-
+  if($repTAG != "None"){
         $repl = $pdo->query("UPDATE Devices SET StaffID = ' $usrID', Stat = 'Active' WHERE AssetTag = '$repTAG'");
 
         if($stat == "Damaged"){
@@ -40,6 +39,9 @@ if(isset($_POST['sbt'])){
      
       // echo $Update;
  
-      header("location: assetManager.php"); 
+      header('Location: ' . $_SERVER['HTTP_REFERER']); 
+}else{
+    echo "Error: No Replacement Asset was Selected";
+}
   
 }

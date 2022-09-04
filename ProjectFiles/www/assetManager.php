@@ -3,7 +3,6 @@
   <head>
     <link rel="stylesheet" type="text/css" href="table.css"> 
     <div class = "menu">
-
     <a href="renewal.php">
         Assest Renewal
     </a>
@@ -11,8 +10,11 @@
         New Assets Stock 
     </a>
     <a href="user.php">
-        Asset Store Manager 
+       User Database
     </a>
+    <a href="dash.php">
+        Requests Dashboard
+     </a>
 </div>
   </head>
   <body>

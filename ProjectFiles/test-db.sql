@@ -47,4 +47,18 @@ INSERT INTO  Devices VALUES ('100','11','1120' ,'MacBookPro15', '2019-08-22','Ac
 ALTER TABLE Devices
 MODIFY DeviceID INT NOT NULL AUTO_INCREMENT;
 
+CREATE TABLE Requests (
+   RequestID int ,
+   ReqType varchar(255),
+   username  varchar(255),
+   LastName varchar(255),
+   FirstName varchar(255),
+   ReqDate DATE,
+   SDate DATE,
+   Model  varchar(255),
+   Reason VARCHAR(255),
+   PRIMARY KEY (RequestID)
+);
 
+ALTER TABLE Requests
+MODIFY RequestID INT NOT NULL AUTO_INCREMENT;

@@ -1,18 +1,33 @@
+<?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" type="text/css" href="table.css"> 
-    <div class = "menu">
-    <a href="assetManager.php">
-        Assest Manager
+<link rel="stylesheet" type="text/css" href="table.css"> 
+<div class = "menu">
+<a href="assetManager.php">
+        Assest Database
     </a>
     <a href="renewal.php">
         Assest Renewal
     </a>
-    <a href="#">
-        Asset Store Manager 
+    <a href="user.php">
+       User Database
     </a>
+    <a href="dash.php">
+        Requests Dashboard
+     </a>
 </div>
+<head>
+<?php
+include('web-db.php');
+ $c = $pdo->query("SELECT count(*) FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE Stat = 'Unutilised' AND purchased_On > DATE_SUB(NOW(),INTERVAL 23 MONTH)");
+ $count = $c->fetch();
+ $num = $count[0];
+ if($num != 0){
+?>
   </head>
   <body>
     <table>
@@ -57,7 +72,15 @@ include('web-db.php');
  ?>
 
 </table>
-
+<?php
+ }
+?>
+<?php
+ $c = $pdo->query("SELECT count(*) FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE Stat = 'Unutilised' AND purchased_On < DATE_SUB(NOW(),INTERVAL 23 MONTH)");
+ $count = $c->fetch();
+ $num = $count[0];
+ if($num != 0){
+?>
 <table>
       <caption>Renewal List</caption> 
       <tr>
@@ -97,5 +120,23 @@ include('web-db.php');
  ?>
 
 </table>
+<?php
+ }
+?>
+<?php
+ $c1 = $pdo->query("SELECT count(*) FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE Stat = 'Unutilised' AND purchased_On < DATE_SUB(NOW(),INTERVAL 23 MONTH)");
+ $count1 = $c1->fetch();
+ $num1 = $count1[0];
+ $c2 = $pdo->query("SELECT count(*) FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE Stat = 'Unutilised' AND purchased_On > DATE_SUB(NOW(),INTERVAL 23 MONTH)");
+ $count2 = $c2->fetch();
+ $num2 = $count2[0];
+ if($num1 == 0 && $num2 == 0){
+?>
+ <table>
+ <caption>Stock is Empty!</caption> 
+</table>
+<?php
+ }
+?>
 </body>
 </html>
