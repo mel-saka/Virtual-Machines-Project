@@ -1,6 +1,7 @@
 
 <?php
 include('web-db.php');
+//This is the form for adding new users
 ?>
  <link rel="stylesheet" type="text/css" href="form.css"> 
 

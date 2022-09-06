@@ -167,8 +167,8 @@ include('web-db.php');
 ?>
  <?php
 include('web-db.php');
-$c = $pdo->query("SELECT count(*) FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE Stat = 'Damaged' ");
-$count = $c->fetch();
+$q = $pdo->query("SELECT * FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE purchased_On <= DATE_SUB(NOW(),  INTERVAL 23 MONTH )
+AND purchased_On>= DATE_SUB(NOW(), INTERVAL 35 MONTH  ) AND Stat = 'Active'"); 
 $num = $count[0];
  if($num != 0){
 ?>

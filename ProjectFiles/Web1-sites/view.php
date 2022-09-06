@@ -3,9 +3,10 @@
       <body>
 <?php
 include('web-db.php');
+//This page views details of tickets in dashboard
 ?>
 <?php
-$id = $_GET['id']; // get id through query string
+$id = $_GET['id']; 
 $up = $pdo->query("SELECT * FROM Requests WHERE RequestID= '$id'");
 $nRows = $pdo->query("SELECT count(*) FROM Requests WHERE RequestID= '$id'")->fetchColumn(); 
 

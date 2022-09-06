@@ -6,10 +6,14 @@ $pdo = require_once 'web-db.php';
 ?>
 <?php
 
-
+$error = "0";
 
 if(isset($_POST['sbt'])){
 if($_POST['FormID'] == "NewAccount"){
+  if(empty($_POST['FirstName']) && empty($_POST['LastName'])&& empty($_POST['username']) && empty($_POST['StartDate'])){
+    echo "Error: All fields are required\n";
+    $error = "1";
+}else{
   $user = $_POST['username'];
   $F_Name = $_POST['FirstName'];
   $L_Name = $_POST['LastName'];
@@ -18,8 +22,14 @@ if($_POST['FormID'] == "NewAccount"){
   $Req_Type = $_POST['FormID'];
 
   $Insert = $pdo->query("INSERT INTO  Requests SET username = '$user',  FirstName = '$F_Name', LastName = '$L_Name', ReqDate = '$Req_Date', SDate = '$St_Date', ReqType = '$Req_Type'  ");
+  header("location: http://192.168.56.23/index.html"); 
+}
 }
 if($_POST['FormID'] == "NewDevice"){
+    if(empty($_POST['User']) && empty($_POST['Model'])&& empty($_POST['reason'])){
+      echo "Error: All fields are required\n";
+      $error = "1";
+  }else{
   $user = $_POST['User'];
   $Model =  $_POST['Model'];
   $reason = $_POST['reason'];
@@ -27,8 +37,14 @@ if($_POST['FormID'] == "NewDevice"){
   $Req_Type = $_POST['FormID'];
 
   $Insert = $pdo->query("INSERT INTO  Requests SET username = '$user', Model = '$Model', Reason = '$reason', ReqDate = '$Req_Date', ReqType = '$Req_Type'");
+  header("location: http://192.168.56.23/index.html"); 
 }
+  }
 if($_POST['FormID'] == "StaffLeave"){
+  if(empty($_POST['FirstName']) && empty($_POST['LastName'])&& empty($_POST['username']) && empty($_POST['leavedate'])){
+    echo "Error: All fields are required\n";
+    $error = "1";
+}else{
     $user = $_POST['username'];
     $F_Name = $_POST['FirstName'];
     $L_Name = $_POST['LastName'];
@@ -37,6 +53,9 @@ if($_POST['FormID'] == "StaffLeave"){
     $Req_Type = $_POST['FormID'];
 
     $Insert = $pdo->query("INSERT INTO  Requests SET username = '$user',  FirstName = '$F_Name', LastName = '$L_Name', ReqDate = '$Req_Date', SDate = '$Lv_Date', ReqType = '$Req_Type' ");
+    header("location: http://192.168.56.23/index.html"); 
 }
+}
+
 }
 ?>

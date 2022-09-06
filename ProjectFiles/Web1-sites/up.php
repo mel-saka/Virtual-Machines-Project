@@ -1,6 +1,7 @@
 
 <?php
 include('web-db.php');
+//This is the page that desplays the form for editing asset information
 ?>
 <?php
 $id = $_GET['id']; // get id through query string

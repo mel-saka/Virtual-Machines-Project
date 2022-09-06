@@ -19,9 +19,9 @@ config.vm.define "web1" do |web|
   web.vm.provision "shell", inline: <<-SHELL
   apt-get update
   apt-get install -y apache2 php libapache2-mod-php php-mysql
-  cp  /vagrant/000-default.conf  /etc/apache2/sites-available/000-default.conf 
-  cp  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
-  cp  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
+  cp  /vagrant/web1-Config/000-default.conf  /etc/apache2/sites-available/000-default.conf 
+  cp  /vagrant/web1-Config/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
+  cp  /vagrant/web1-Config/apache2.conf      /etc/apache2/apache2.conf 
   # mv  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
   # mv  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
    systemctl restart apache2
@@ -36,9 +36,9 @@ config.vm.define "web2" do |web|
     web.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y apache2 php libapache2-mod-php php-mysql
-  cp  /vagrant/config/000-default.conf  /etc/apache2/sites-available/000-default.conf 
-  cp  /vagrant/config/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
-  cp  /vagrant/config/apache2.conf      /etc/apache2/apache2.conf 
+  cp  /vagrant/web2-Config/000-default.conf  /etc/apache2/sites-available/000-default.conf 
+  cp  /vagrant/web2-Config/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
+  cp  /vagrant/web2-Config/apache2.conf      /etc/apache2/apache2.conf 
   # mv  /vagrant/default-ssl.conf  /etc/apache2/sites-available/default-ssl.conf 
   # mv  /vagrant/apache2.conf      /etc/apache2/apache2.conf 
    systemctl restart apache2
@@ -51,15 +51,8 @@ config.vm.define "db" do |db|
   db.vm.network :private_network, ip: "192.168.56.24"
   #config.vm.network "forwarded_port", guest: 3306, host: 3306
   db.vm.synced_folder ".", "/vagrant"
- # db.vm.provision "shell", inline: <<-SHELL
-  #sudo apt update -y
-  #sudo apt install apache2 -y
-  #apt-get update
-  #apt-get install -y apache2
-  #apt-get install mysql-server -y
-  #sudo apt install mysql-server -y
-  #SHELL
-  config.vm.provision :shell, path: "bootstrap.sh"
+ 
+ db.vm.provision :shell, path: "bootstrap.sh"
 end
 
 end

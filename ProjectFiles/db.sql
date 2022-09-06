@@ -33,7 +33,7 @@ CREATE TABLE Devices (
 
 
 
-INSERT INTO  Devices VALUES ('10','2','1111','MacBookPro18', '2021-12-22', 'Active');
+INSERT INTO  Devices VALUES ('10','2','1111','MacBookPro18', '2021-12-22', 'Damaged');
 INSERT INTO  Devices VALUES ('20','3', '1112', 'MacBookPro17', '2021-12-22','Active');
 INSERT INTO  Devices VALUES ('30','4','1113', 'MacBookPro16', '2021-12-22','Active');
 INSERT INTO  Devices VALUES ('40','5','1114','MacBookPro16', '2021-12-22','Active');
@@ -43,6 +43,8 @@ INSERT INTO  Devices VALUES ('70','8','1117' ,'MacBookPro15', '2019-09-22','Acti
 INSERT INTO  Devices VALUES ('80','9','1118' ,'MacBookPro15', '2019-09-22','Active');
 INSERT INTO  Devices VALUES ('90','10','1119' ,'MacBookPro15', '2019-08-22','Active');
 INSERT INTO  Devices VALUES ('100','11','1120' ,'MacBookPro15', '2019-08-22','Active');
+INSERT INTO  Devices VALUES ('110','1','1121','MacBookPro18', '2022-12-22', 'Unutilised');
+INSERT INTO  Devices VALUES ('120','1', '1122', 'MacBookPro18', '2022-12-22','Unutilised');
 
 ALTER TABLE Devices
 MODIFY DeviceID INT NOT NULL AUTO_INCREMENT;

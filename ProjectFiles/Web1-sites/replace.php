@@ -1,9 +1,10 @@
 
 <?php
 include('web-db.php');
+//This webpage displays the device to be replaced with replacement options. the replacemet select bar shows the Asset tag
 ?>
 <?php
-$id = $_GET['id']; // get id through query string
+$id = $_GET['id']; 
 
 $up = $pdo->query("SELECT * FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE DeviceID = '$id'");
 $nRows = $pdo->query("SELECT count(*) FROM Devices LEFT JOIN Staff ON Devices.StaffID = Staff.StaffID WHERE DeviceID = '$id'")->fetchColumn(); 
